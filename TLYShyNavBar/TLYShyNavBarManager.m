@@ -389,7 +389,11 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)prepareForDisplay
 {
-    [self cleanup];
+    if (self.previousContractionState)
+        [self.navBarController contract];
+    else
+        [self.navBarController expand];
+    //[self cleanup];
 }
 
 - (void)layoutViews
@@ -437,7 +441,7 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    [self.navBarController expand];
+    //[self.navBarController expand];
 }
 
 - (void)applicationDidChangeStatusBarFrame:(NSNotification *)notification
