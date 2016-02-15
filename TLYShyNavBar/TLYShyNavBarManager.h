@@ -72,6 +72,12 @@
  */
 @property (nonatomic) BOOL disable;
 
+/* Set YES to default behavior, when happens applicationDidBecomeActive.
+ * Set NO, if you do not want call methods to expand navBar when this happen.
+ * Defaults to YES
+ */
+@property (nonatomic) BOOL expandNavBarInAppDidBecomeActive;
+
 /* Use this to be notified about contraction and expansion events.
  */
 @property (nonatomic, weak) id<TLYShyNavBarManagerDelegate> delegate;

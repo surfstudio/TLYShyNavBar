@@ -60,6 +60,7 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
         /* Initialize defaults */
         self.contracting = NO;
         self.previousContractionState = YES;
+        self.expandNavBarInAppDidBecomeActive = YES;
 
         self.expansionResistance = 200.f;
         self.contractionResistance = 0.f;
@@ -389,11 +390,7 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)prepareForDisplay
 {
-    if (self.previousContractionState)
-        [self.navBarController contract];
-    else
-        [self.navBarController expand];
-    //[self cleanup];
+    [self cleanup];
 }
 
 - (void)layoutViews
@@ -441,7 +438,8 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    //[self.navBarController expand];
+    if (self.expandNavBarInAppDidBecomeActive)
+        [self.navBarController expand];
 }
 
 - (void)applicationDidChangeStatusBarFrame:(NSNotification *)notification
